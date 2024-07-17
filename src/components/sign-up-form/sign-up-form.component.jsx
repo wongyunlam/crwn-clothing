@@ -3,6 +3,7 @@ import './sign-up-form.styles.scss'
 import { useState } from 'react'
 
 import FormInput from '../form-input/form-input.component'
+import Button from '../button/button.component'
 
 import {
     createAuthUserWithEmailAndPassword,
@@ -96,7 +97,7 @@ export default function SignUpForm() {
                         required: true,
                     }}
                 />
-                <button type='submit'>Submit</button>
+                <Button type='submit'>SIGN UP</Button>
             </form>
         </div>
     )
