@@ -1,6 +1,7 @@
 import './sign-up-form.styles.scss'
 
 import { useState } from 'react'
+import { UserContext } from '../../context/user.context'
 
 import FormInput from '../form-input/form-input.component'
 import Button from '../button/button.component'
@@ -43,6 +44,7 @@ export default function SignUpForm() {
             )
 
             await createUserDocumentFromAuth(user, { displayName })
+
             resetForm()
         } catch (error) {
             if (error.code === 'auth/email-already-in-use')
@@ -91,7 +93,7 @@ export default function SignUpForm() {
                     label='Confirm Password'
                     inputOptions={{
                         name: 'confirmPassword',
-                        type: 'confirmPassword',
+                        type: 'password',
                         value: confirmPassword,
                         onChange: handleChange,
                         required: true,

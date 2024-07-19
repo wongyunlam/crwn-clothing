@@ -32,15 +32,13 @@ export default function SignInForm() {
 
     const handleSubmit = async e => {
         e.preventDefault()
-        console.log('response')
 
         try {
-            const response = await signInAuthUserWithEmailAndPassword(
+            const { user } = await signInAuthUserWithEmailAndPassword(
                 email,
                 password
             )
 
-            console.log(response)
             resetForm()
         } catch (error) {
             switch (error.code) {
@@ -53,24 +51,7 @@ export default function SignInForm() {
         }
     }
 
-    const signInWithGoogle = async () => {
-        try {
-            const result = await signInWithGooglePopup()
-            if (result && result.user) {
-                // 成功處理
-                const user = result.user
-                await createUserDocumentFromAuth(user)
-                console.log('User signed in:', user)
-            } else {
-                console.error('No user information found in the result.')
-            }
-        } catch (error) {
-            // 無視 auth/popup-closed-by-user 錯誤
-            if (error.code !== 'auth/popup-closed-by-user') {
-                console.error('An error occurred:', error.message)
-            }
-        }
-    }
+    const signInWithGoogle = async () => await signInWithGooglePopup()
 
     return (
         <div className='sign-in-container '>
