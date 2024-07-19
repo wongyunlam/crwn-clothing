@@ -2,6 +2,8 @@ import './navigation.styles.scss'
 import { Link, Outlet } from 'react-router-dom'
 import { ReactComponent as CrwnLogo } from '../../assets/crown.svg'
 
+import CartIcon from '../../components/cart-icon/cart-icon.component'
+
 import { useContext } from 'react'
 import { UserContext } from '../../context/user.context'
 
@@ -30,6 +32,7 @@ export default function Navigation() {
                             SIGN IN
                         </Link>
                     )}
+                    <CartIcon />
                 </div>
             </div>
             <Outlet />
