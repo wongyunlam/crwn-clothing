@@ -33,6 +33,10 @@ const removeCartItem = (cartItems, cartItemToRemove) => {
     )
 }
 
+const clearCartItem = (cartItems, cartItemToClear) => {
+    return cartItems.filter(item => item.id !== cartItemToClear.id)
+}
+
 const CartContext = createContext({
     isCartOpen: false,
     setIsCartOpen: () => {},
@@ -40,6 +44,7 @@ const CartContext = createContext({
     cartItems: [],
     addItemToCart: () => {},
     removeItemFromCart: () => {},
+    clearItemFromCart: () => {},
 
     cartCount: 0,
     cartTotal: 0,
@@ -63,23 +68,52 @@ const CartProvider = ({ children }) => {
             price: 18,
             quantity: 3,
         },
+        {
+            id: 6,
+            name: 'Palm Tree Cap',
+            imageUrl: 'https://i.ibb.co/rKBDvJX/palm-tree-cap.png',
+            price: 14,
+            quantity: 1,
+        },
+        {
+            id: 7,
+            name: 'Red Beanie',
+            imageUrl: 'https://i.ibb.co/bLB646Z/red-beanie.png',
+            price: 18,
+            quantity: 1,
+        },
+        {
+            id: 8,
+            name: 'Wolf Cap',
+            imageUrl: 'https://i.ibb.co/1f2nWMM/wolf-cap.png',
+            price: 14,
+            quantity: 1,
+        },
+        {
+            id: 9,
+            name: 'Blue Snapback',
+            imageUrl: 'https://i.ibb.co/X2VJP2W/blue-snapback.png',
+            price: 16,
+            quantity: 1,
+        },
     ])
 
-    const addItemToCart = product => {
+    const addItemToCart = product =>
         setCartItems(addCartItem(cartItems, product))
-    }
 
-    const removeItemFromCart = cartItem => {
-        // removeCartItem(cartItems, cartItem)
+    const removeItemFromCart = cartItem =>
         setCartItems(removeCartItem(cartItems, cartItem))
-    }
 
-    const removeAllItemFromCart = cartItem => {
-        setCartItems([])
-    }
+    const clearItemFromCart = cartItem =>
+        setCartItems(clearCartItem(cartItems, cartItem))
 
     const cartCount = cartItems.reduce(
         (total, cartItem) => total + cartItem.quantity,
+        0
+    )
+
+    const cartTotal = cartItems.reduce(
+        (total, cartItem) => total + cartItem.quantity * cartItem.price,
         0
     )
 
@@ -87,12 +121,13 @@ const CartProvider = ({ children }) => {
         isCartOpen,
         setIsCartOpen,
 
+        cartItems,
         addItemToCart,
         removeItemFromCart,
-        removeAllItemFromCart,
+        clearItemFromCart,
 
-        cartItems,
         cartCount,
+        cartTotal,
     }
 
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>
