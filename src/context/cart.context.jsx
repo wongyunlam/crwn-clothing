@@ -53,50 +53,7 @@ const CartContext = createContext({
 const CartProvider = ({ children }) => {
     const [isCartOpen, setIsCartOpen] = useState(false)
 
-    const [cartItems, setCartItems] = useState([
-        {
-            id: 3,
-            name: 'Brown Cowboy',
-            imageUrl: 'https://i.ibb.co/QdJwgmp/brown-cowboy.png',
-            price: 35,
-            quantity: 4,
-        },
-        {
-            id: 2,
-            name: 'Blue Beanie',
-            imageUrl: 'https://i.ibb.co/ypkgK0X/blue-beanie.png',
-            price: 18,
-            quantity: 3,
-        },
-        {
-            id: 6,
-            name: 'Palm Tree Cap',
-            imageUrl: 'https://i.ibb.co/rKBDvJX/palm-tree-cap.png',
-            price: 14,
-            quantity: 1,
-        },
-        {
-            id: 7,
-            name: 'Red Beanie',
-            imageUrl: 'https://i.ibb.co/bLB646Z/red-beanie.png',
-            price: 18,
-            quantity: 1,
-        },
-        {
-            id: 8,
-            name: 'Wolf Cap',
-            imageUrl: 'https://i.ibb.co/1f2nWMM/wolf-cap.png',
-            price: 14,
-            quantity: 1,
-        },
-        {
-            id: 9,
-            name: 'Blue Snapback',
-            imageUrl: 'https://i.ibb.co/X2VJP2W/blue-snapback.png',
-            price: 16,
-            quantity: 1,
-        },
-    ])
+    const [cartItems, setCartItems] = useState([])
 
     const addItemToCart = product =>
         setCartItems(addCartItem(cartItems, product))
